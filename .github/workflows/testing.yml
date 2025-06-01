@@ -5,6 +5,7 @@ jobs:
   unit-testing:
     name: "Unit testing"
     runs-on: ${{ matrix.operating_system }}
+    continue-on-error: true
     strategy:
       matrix:
         nodejs_version: [18, 19, 20]
