@@ -1,0 +1,26 @@
+name: testing
+on: push
+
+jobs:
+  unit-testing:
+    name: "Unit testing"
+    runs-on: ${{ matrix.operating_system }}
+    strategy:
+      matrix:
+        nodejs_version: [18, 19, 20]
+        operating_system: [ubuntu-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.nodejs_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.nodejs_version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run unit tests
+        run: npm test
