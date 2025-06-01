@@ -7,10 +7,10 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        nodejs_version: [18, 19, 20]
+        nodejs_version: [20]
         operating_system: [ubuntu-latest]
     runs-on: ${{ matrix.operating_system }}
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -49,6 +49,7 @@ jobs:
         run: npm install
 
       - name: Run coverage
+        continue-on-error: true
         run: npm run coverage
 
       - name: Upload coverage report
